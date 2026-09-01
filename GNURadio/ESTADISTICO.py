@@ -11,18 +11,18 @@
 from PyQt5 import Qt
 from gnuradio import qtgui
 from gnuradio import blocks
-import default_epy_block_0 as epy_block_0  # embedded python block
-import sip
-import threading
 from gnuradio import gr
 from gnuradio.filter import firdes
 from gnuradio.fft import window
 import sys
 import signal
+from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
-
+import ESTADISTICO_epy_block_0 as epy_block_0  # embedded python block
+import sip
+import threading
 
 
 
