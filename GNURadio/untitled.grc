@@ -1,7 +1,7 @@
 options:
   parameters:
     alias: ''
-    author: ''
+    author: mateo
     catch_exceptions: 'True'
     comment: ''
     copyright: ''
@@ -61,7 +61,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 172.0]
+    coordinate: [48, 172.0]
     rotation: 0
     state: enabled
 - name: blocks_throttle2_0
@@ -82,7 +82,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [288, 324.0]
+    coordinate: [288, 300.0]
     rotation: 0
     state: enabled
 - name: epy_block_0
@@ -115,7 +115,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [480, 248.0]
+    coordinate: [496, 300.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -212,7 +212,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [680, 116.0]
+    coordinate: [712, 196.0]
     rotation: 0
     state: enabled
 
