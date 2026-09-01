@@ -86,8 +86,8 @@
 % PASO 6. Agregar aquí el nombre y código de los autores.  
 \author{
 Juan David Quiñones Chacon - 2231541 \\
-Integrante2 - 21\\
-Integrante3 - 20
+Crisntian Mateo Pinilla Rodriguez - 2215591\\
+Brhandon Felipe Herrera Puerto - 2185601
 }
 \affil{\small{\url{https://github.com/JuanQ1105/2026_2_CommII_A1_GF}}}
 \affil{\normalsize{Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones} \\ % No modificar
@@ -111,18 +111,20 @@ Integrante3 - 20
 % \begin{multicols}{2}
 \renewcommand{\abstractname}{Abstract}
 \begin{abstract}
- Completar
- 
- 
+ This report presents the development and implementation of custom Python blocks within the GNU Radio environment, designed for Software-Defined Radio (SDR) applications. Various digital signal processing algorithms were implemented using a collaborative workflow and version control via Git and GitHub. These include accumulator and differentiator blocks, as well as modules for calculating statistical metrics in real time.  The
+system’s performance was evaluated under variable sam
+pling rates and noisy environments, validating theoretical digital communication models. Results demonstrate the efficiency of programmable blocks for signal characterization and robust experimentation in SDR platforms.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Gato de ojos verdes. (Cambiar por las que usen)
+SDR, GNU Radio, Python, Signal Processing,
+Accumulator, Differentiator
 \end{IEEEkeywords}
 
 \section{Introducción}
 
- Completar\cite{b1}. % Ejemplo de citar una referencia
+ La radio definida por software (SDR) es un sistema de radiocomunicaciones donde la mayoría de las funciones de radio se implementan mediante software en lugar de hardware dedicado, permitiendo flexibilidad y reconfiguración dinámica. Herramientas como GNU Radio facilitan la creación y evaluación de sistemas digitales mediante diagramas de flujo que ilustran etapas esenciales en el procesamiento de señales.
+ GNU Radio constituye el marco de trabajo estándar para este propósito; no obstante, la construcción de sistemas avanzados exige trascender el uso de bloques predeterminados mediante la programación de módulos a la medida. Este informe aborda el desarrollo e integración de bloques nativos en Python para procesar flujos de datos en tiempo real.  Para estructurar la solución, se codificaron algoritmos de acumulación y diferenciación discreta, seguidos por un bloque de estimación estadística orientado a caracterizar señales dinámicas. Dichos módulos se integraron en una aplicación práctica diseñada para la mitigación y análisis de ruido, demostrando la utilidad de los descriptores estadísticos en el filtrado y detección de señales. Adicionalmente, el proceso de desarrollo e integración del código se coordinó de forma distribuida utilizando un flujo de trabajo basado en ramas en Git y GitHub.
 
 \section{Metodología}
 
@@ -139,16 +141,42 @@ Figura de ejemplo para enlazar un hipervínculo \ref{fig:ejemplo}
 
 \section{RESULTADOS Y ANÁLISIS DE DATOS}
 
-Ejemplo de ecuación
+\subsection{Bloque Acumulador}
+Para analizar el comportamiento del bloque acumu
+lador en GNU Radio, se implementó un diagrama de
+flujo compuesto por un bloque Vector Source, un bloque
+Throttle, un bloque acumulador denominado e\_Acum y
+dos bloques QT GUI Time Sink para visualizar simultá
+neamente las señales de entrada y salida.
 
-%Ejemplo de ecuación
+\begin{itemize}
+    \item \textbf{Vector Source:} Funciona como el generador de señales de entrada al sistema. Modela un flujo de datos discreto a partir del vector periódico \texttt{[1, 1, 1, -1, -1, -1]} habilitado con la opción \textit{Repeat: Yes}. Esto produce una onda cuadrada simétrica que alterna entre valores lógicos de $+1$ y $-1$.
+    \item \textbf{e\_Acum (Bloque Acumulador):} Es el módulo programado en Python que implementa la función de integración discreta en el tiempo mediante la ecuación de diferencias:
+    \begin{equation*}
+        y[n] = y[n-1] + x[n]
+    \end{equation*}
+    El algoritmo mantiene una variable interna que acumula el valor de las muestras entrantes $x[n]$. Al recibir valores de $+1$, la salida $y[n]$ se incrementa linealmente formando una rampa ascendente; al recibir valores de $-1$, la salida se decrementa generando una rampa descendente.
+    \item \textbf{Throttle:} Actúa como limitador de velocidad del flujo de muestras en la CPU. Restringe la tasa de procesamiento a la frecuencia especificada por la variable \texttt{samp\_rate} ($32\text{ kHz}$), asegurando una simulación coherente con el tiempo real.
+    \item \textbf{QT GUI Time Sink (Entrada):} Visualizador osciloscópico conectado a la salida directa del \textit{Vector Source}. Permite observar la señal de entrada cuadrada en el dominio del tiempo.
+    \item \textbf{QT GUI Time Sink (Salida):} Visualizador conectado a la salida del bloque \textit{e\_Acum}. Muestra la señal procesada tras el proceso de acumulación.
+\end{itemize}
 
-\begin{equation}
-    R_b = R_s \log_2(4)
-\end{equation}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{acumulador.jpeg}
+    \caption{Diagrama de Bloques Acumulador}
+    \label{fig:DiferenciadorCoseno}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{acumula.jpeg}
+    \caption{Resultado obtenido}
+    \label{fig:DiferenciadorCoseno}
+\end{figure}
 
-
+\subsection*{Conclusión del Bloque Acumulador}
+La respuesta obtenida en la simulación confirma que el bloque \texttt{e\_Acum} se comporta de manera equivalente a un \textbf{integrador discreto en el tiempo}. Como se observa al comparar las gráficas, el procesamiento de la onda cuadrada alternada entre $+1$ y $-1$ genera a la salida una onda triangular acotada en el rango $[0, 3]$. La acumulación sucesiva de tres muestras positivas consecutivas eleva el nivel de la señal desde $0$ hasta su valor pico de $3$, mientras que la llegada de tres muestras negativas produce la pendiente descendente hasta retornar a $0$. Esto valida matemáticamente la correcta integración recursiva del algoritmo desarrollado en Python para el procesamiento de señales en tiempo real.
 
 \section{Conclusiones}
 
