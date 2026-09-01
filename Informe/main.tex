@@ -128,14 +128,13 @@ Accumulator, Differentiator
 
 \section{Metodología}
 
-Figura de ejemplo para enlazar un hipervínculo \ref{fig:ejemplo}
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\linewidth]{ejemplo.png}
-    \caption{Figura de ejemplo para referenciar}
-    \label{fig:ejemplo}
-\end{figure}
+El desarrollo de esta práctica se centró en el diseño, implementación y validación de tres algoritmos utilizando la herramienta GNU Radio Companion. El flujo de trabajo se dividió en tres fases principales correspondientes a cada bloque procesador: un acumulador, un diferenciador y un analizador estadístico.
+\begin{itemize}
+    \item Diseño del Bloque Acumulador: El primer algoritmo consistió en la implementación de un sistema acumulador discreto, cuya función matemática responde a la ecuación: $y[n]=y[n-1]+x[n]$.
+    \item Diseño del Bloque Diferenciador: El segundo algoritmo implementó un diferenciador discreto de primer orden, modelado mediante la ecuación $y[n]=x[n]-x[n-1]$.
+    \item Implementación del Analizador Estadístico: El tercer algoritmo implementa el cálculo de métricas estadísticas en tiempo real (Media, Media Cuadrática, Valor RMS, Potencia Promedio y Desviación Estándar).
+    Los codigos del bloque de python de cada uno de los algoritmos se extrajeron del libro guia\cite{b1}.
+\end{itemize}
 
 
 
@@ -179,6 +178,34 @@ neamente las señales de entrada y salida.
 
 \subsection*{Conclusión del Bloque Acumulador}
 La respuesta obtenida en la simulación confirma que el bloque \texttt{e\_Acum} se comporta de manera equivalente a un \textbf{integrador discreto en el tiempo}. Como se observa al comparar las gráficas, el procesamiento de la onda cuadrada alternada entre $+1$ y $-1$ genera a la salida una onda triangular acotada en el rango $[0, 3]$. La acumulación sucesiva de tres muestras positivas consecutivas eleva el nivel de la señal desde $0$ hasta su valor pico de $3$, mientras que la llegada de tres muestras negativas produce la pendiente descendente hasta retornar a $0$. Esto valida matemáticamente la correcta integración recursiva del algoritmo desarrollado en Python para el procesamiento de señales en tiempo real.
+
+\subsection{Bloque Diferenciador}
+
+Para validar el comportamiento del bloque diferenciador en GNU Radio, se diseñó un esquema de simulación enfocado en el análisis de señales analógicas. Como señal de prueba se empleo una señal cosenoidal con una frecuencia fundamental de 1kHz y una frecuencia de muestreo de 32k.
+
+El flujo de trabajo implementado consta de los siguientes bloques principales: 
+
+\begin{itemize}
+    \item Signal Source: Genera la señal de prueba cosenoidal de referencia con amplitud unitaria.
+    \item Throttle: Controla la tasa de consumo de muestras para adecuar la simulación a la velocidad de procesamiento en tiempo real sin sobrecargar el procesador.
+    \item e\_Diferenciador: Bloque personalizado encargado de calcular la derivada numérica de la señal de entrada mediante operaciones discretas en el dominio temporal.
+    \item QT GUI Time Sink: Osciloscopio virtual configurado con dos canales (entrada en azul y salida diferenciada en rojo) y una ventana optimizada a $128$ puntos para facilitar la visualización detallada de los ciclos.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{DiagramaDife.png}
+    \caption{Diagrama de Bloques del diferenciador}
+    \label{fig:DiferenciadorCoseno}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{DiferenciadorCoseno.png}
+    \caption{Resultado Obtenido para una señal cosenoidal}
+    \label{fig:DiferenciadorCoseno}
+\end{figure}
+
+En la gráfica \ref{fig:DiferenciadorCoseno} en el dominio del tiempo se visualiza de forma simultánea la señal cosenoidal original (Canal 1 - Azul) y la respuesta entregada por el bloque diferenciador (Canal 2 - Rojo). Del comportamiento observado se destacan dos aspectos fundamentales: Relación de Fase y Polaridad: Matemáticamente, la derivada de una señal coseno ideal $x(t) = \cos(\omega t)$ corresponde a un seno invertido (es decir, $-\omega \sin(\omega t)$). En la simulación se comprueba que, ante los cruces por cero de la señal azul, la salida roja alcanza sus valores pico con la inversión de polaridad esperada para una diferenciación de primer orden. Escalamiento de Amplitud: La amplitud de la onda resultante muestra una reducción controlada por la ganancia discreta del algoritmo y la frecuencia de la señal, reflejando el comportamiento típico de un sistema diferenciador.
 
 \subsection{Analizador Estadístico}
 
