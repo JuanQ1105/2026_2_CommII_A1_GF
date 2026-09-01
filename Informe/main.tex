@@ -175,8 +175,78 @@ neamente las señales de entrada y salida.
     \label{fig:DiferenciadorCoseno}
 \end{figure}
 
+
+
 \subsection*{Conclusión del Bloque Acumulador}
 La respuesta obtenida en la simulación confirma que el bloque \texttt{e\_Acum} se comporta de manera equivalente a un \textbf{integrador discreto en el tiempo}. Como se observa al comparar las gráficas, el procesamiento de la onda cuadrada alternada entre $+1$ y $-1$ genera a la salida una onda triangular acotada en el rango $[0, 3]$. La acumulación sucesiva de tres muestras positivas consecutivas eleva el nivel de la señal desde $0$ hasta su valor pico de $3$, mientras que la llegada de tres muestras negativas produce la pendiente descendente hasta retornar a $0$. Esto valida matemáticamente la correcta integración recursiva del algoritmo desarrollado en Python para el procesamiento de señales en tiempo real.
+
+\subsection{Analizador Estadístico}
+
+Es un \textbf{Embedded Python Block} (bloque embebido en Python) de GNU Radio, implementado como una subclase de \texttt{gr.sync\_block}. Recibe una entrada (la señal) y produce cinco salidas simultáneas, cada una con una estadística calculada de forma acumulativa desde el inicio de la simulación:
+
+GNU Radio no procesa la señal muestra por muestra, sino en bloques (buffers) de tamaño variable $N$, cada vez que se invoca el método work(). Como las estadísticas deben ser acumulativas es decir, deben considerar todas las muestras procesadas desde el arranque y no solo el bloque actual, el código guarda el estado entre llamadas mediante variables de instancia inicializadas en el constructor. Sin esta persistencia, cada llamada a work() reiniciarí́a el cálculo desde cero y el resultado no representaría el promedio real de toda la señal procesada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{estadistico.jpeg}
+    \caption{Diagrama de Bloque Estadistico}
+    \label{fig:DiferenciadorCoseno}
+\end{figure}
+
+\subsubsection*{Fórmulas de cálculo}
+
+Cada salida del bloque corresponde a una estadística distinta, calculada según las expresiones mostradas en la Tabla~\ref{tab:formulas}.
+
+\begin{table}[h]
+\centering
+\caption{Fórmulas de cálculo de cada estadística}
+\label{tab:formulas}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Estadística} & \textbf{Fórmula} \\
+\hline
+Media & $\displaystyle \bar{x}[n] = \frac{1}{n}\sum_{k=1}^{n} x[k]$ \\
+\hline
+Media Cuadrática & $\displaystyle \overline{x^2}[n] = \frac{1}{n}\sum_{k=1}^{n} x[k]^2$ \\
+\hline
+RMS & $\displaystyle x_{RMS} = \sqrt{\overline{x^2}}$ \\
+\hline
+Potencia Promedio & $\displaystyle P_{prom} = \overline{x^2}$ \\
+\hline
+Desviación Estándar & $\displaystyle \sigma = \sqrt{\frac{1}{n}\sum_{k=1}^{n} (x[k]-\bar{x})^2}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsubsection*{Validación de resultados}
+
+Para verificar el correcto funcionamiento del bloque se utilizó como señal de prueba el vector $(1,\ 2,\ -1)$, repetido periódicamente. La Tabla~\ref{tab:comparacion} compara los valores obtenidos analíticamente con los arrojados por la simulación en GNU Radio.
+
+
+Como se observa, los valores simulados coinciden con los valores teóricos calculados analíticamente, con diferencias mínimas atribuibles al redondeo de punto flotante y al número finito de muestras acumuladas durante la simulación, validando así el correcto funcionamiento del bloque.
+
+
+\begin{table}[H]
+\centering
+\caption{Comparación entre valores teóricos y simulados (vector de prueba: 1, 2, -1)}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Estadística} & \textbf{Valor teórico} & \textbf{Valor simulado (GNU Radio)} \\
+\hline
+Media & 0.667 & 0.6666 \\
+\hline
+Media Cuadrática & 2.000 & 2.0003 \\
+\hline
+RMS & 1.414 & 1.4143 \\
+\hline
+Potencia Promedio & 2.000 & 2.0003 \\
+\hline
+Desviación Estándar & 1.247 & 1.2480 \\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Conclusiones}
 
