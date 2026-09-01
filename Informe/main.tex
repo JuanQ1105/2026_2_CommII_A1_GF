@@ -123,17 +123,16 @@ Accumulator, Differentiator
 
 \section{Introducción}
 
- La radio definida por software (SDR) es un sistema de radiocomunicaciones donde la mayoría de las funciones de radio se implementan mediante software en lugar de hardware dedicado, permitiendo flexibilidad y reconfiguración dinámica. Herramientas como GNU Radio facilitan la creación y evaluación de sistemas digitales mediante diagramas de flujo que ilustran etapas esenciales en el procesamiento de señales.
+ La radio definida por software (SDR) es un sistema de radiocomunicaciones donde la mayoría de las funciones de radio se implementan mediante software en lugar de hardware dedicado, permitiendo flexibilidad y reconfiguración dinámica. Herramientas como GNU Radio \cite{gnuradio} facilitan la creación y evaluación de sistemas digitales mediante diagramas de flujo que ilustran etapas esenciales en el procesamiento de señales.
  GNU Radio constituye el marco de trabajo estándar para este propósito; no obstante, la construcción de sistemas avanzados exige trascender el uso de bloques predeterminados mediante la programación de módulos a la medida. Este informe aborda el desarrollo e integración de bloques nativos en Python para procesar flujos de datos en tiempo real.  Para estructurar la solución, se codificaron algoritmos de acumulación y diferenciación discreta, seguidos por un bloque de estimación estadística orientado a caracterizar señales dinámicas. Dichos módulos se integraron en una aplicación práctica diseñada para la mitigación y análisis de ruido, demostrando la utilidad de los descriptores estadísticos en el filtrado y detección de señales. Adicionalmente, el proceso de desarrollo e integración del código se coordinó de forma distribuida utilizando un flujo de trabajo basado en ramas en Git y GitHub.
 
 \section{Metodología}
 
-El desarrollo de esta práctica se centró en el diseño, implementación y validación de tres algoritmos utilizando la herramienta GNU Radio Companion. El flujo de trabajo se dividió en tres fases principales correspondientes a cada bloque procesador: un acumulador, un diferenciador y un analizador estadístico.
+El desarrollo de esta práctica se centró en el diseño, implementación y validación de tres algoritmos utilizando la herramienta GNU Radio Companion. El flujo de trabajo se dividió en tres fases principales correspondientes a cada bloque procesador: un acumulador, un diferenciador y un analizador estadístico. Los codigos del bloque de python de cada uno de los algoritmos se extrajeron del libro guia\cite{comunicaciones2020}.
 \begin{itemize}
     \item Diseño del Bloque Acumulador: El primer algoritmo consistió en la implementación de un sistema acumulador discreto, cuya función matemática responde a la ecuación: $y[n]=y[n-1]+x[n]$.
     \item Diseño del Bloque Diferenciador: El segundo algoritmo implementó un diferenciador discreto de primer orden, modelado mediante la ecuación $y[n]=x[n]-x[n-1]$.
     \item Implementación del Analizador Estadístico: El tercer algoritmo implementa el cálculo de métricas estadísticas en tiempo real (Media, Media Cuadrática, Valor RMS, Potencia Promedio y Desviación Estándar).
-    Los codigos del bloque de python de cada uno de los algoritmos se extrajeron del libro guia\cite{b1}.
 \end{itemize}
 
 
@@ -292,17 +291,12 @@ Desviación Estándar & 1.247 & 1.2480 \\
 
 \end{itemize}
 
-% NO MODIFIQUE NI ELIMINE ESTA PARTE PARA QUE APAREZCAN LAS REFERENCIAS
-\bibliographystyle{IEEEtran}
+\nocite{*}
 
-\begin{thebibliography}{00}
+% Define el estilo de la bibliografía
+\bibliographystyle{ieeetr} 
 
-\bibitem{b1}
-Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones, 
-\textit{Libro de Comunicaciones Plus Volumen I}. 
-Bucaramanga, Colombia: Universidad Industrial de Santander, 2020, material de apoyo académico.
-
-
-\end{thebibliography}
+% Indica el nombre de tu archivo .bib
+\bibliography{bibliografia} 
 
 \end{document}

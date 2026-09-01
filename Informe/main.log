@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.1)  1 SEP 2026 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.1)  1 SEP 2026 18:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -830,10 +830,23 @@ File: t1bch.fd 2004/10/18 font definitions for T1/bch.
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count377
 ) (main.aux
-LaTeX Info: Redefining \. on input line 14.
-LaTeX Info: Redefining \% on input line 14.
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 14.
+(babel)             Reported on input line 13.
+
+
+LaTeX Warning: Label `fig:DiferenciadorCoseno' multiply defined.
+
+
+LaTeX Warning: Label `fig:DiferenciadorCoseno' multiply defined.
+
+
+LaTeX Warning: Label `fig:DiferenciadorCoseno' multiply defined.
+
+
+LaTeX Warning: Label `fig:DiferenciadorCoseno' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -931,59 +944,176 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
  (C:\Users\Juan\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<ejemplo.png, id=28, 325.96782pt x 417.81094pt>
-File: ejemplo.png Graphic file (type png)
-<use ejemplo.png>
-Package pdftex.def Info: ejemplo.png  used on input line 133.
-(pdftex.def)             Requested size: 195.39433pt x 250.4526pt.
 
-Underfull \vbox (badness 1297) has occurred while \output is active []
+LaTeX Warning: Citation `gnuradio' on page 1 undefined on input line 126.
 
-<./figs/uislogohoriz.png, id=30, 243.91125pt x 119.69719pt>
+
+LaTeX Warning: Citation `comunicaciones2020' on page 1 undefined on input line 131.
+
+<./figs/uislogohoriz.png, id=35, 243.91125pt x 119.69719pt>
 File: ./figs/uislogohoriz.png Graphic file (type png)
 <use ./figs/uislogohoriz.png>
-Package pdftex.def Info: ./figs/uislogohoriz.png  used on input line 175.
+Package pdftex.def Info: ./figs/uislogohoriz.png  used on input line 151.
 (pdftex.def)             Requested size: 63.77643pt x 31.2982pt.
 
 Overfull \hbox (1.18047pt too wide) has occurred while \output is active
 [][] 
  []
 
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 175.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 151.
 (C:\Users\Juan\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-<./figs/logoE3T.png, id=31, 83.1105pt x 68.6565pt>
+<./figs/logoE3T.png, id=37, 83.1105pt x 68.6565pt>
 File: ./figs/logoE3T.png Graphic file (type png)
 <use ./figs/logoE3T.png>
-Package pdftex.def Info: ./figs/logoE3T.png  used on input line 175.
+Package pdftex.def Info: ./figs/logoE3T.png  used on input line 151.
 (pdftex.def)             Requested size: 34.14322pt x 28.20485pt.
  [1{C:/Users/Juan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
- <./figs/uislogohoriz.png> <./figs/logoE3T.png> <./ejemplo.png>] (main.aux
-LaTeX Info: Redefining \. on input line 14.
-LaTeX Info: Redefining \% on input line 14.
+ <./figs/uislogohoriz.png> <./figs/logoE3T.png>]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 151.
+ (C:\Users\Juan\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+<acumulador.jpeg, id=53, 1091.07625pt x 507.8975pt>
+File: acumulador.jpeg Graphic file (type jpg)
+<use acumulador.jpeg>
+Package pdftex.def Info: acumulador.jpeg  used on input line 165.
+(pdftex.def)             Requested size: 244.24199pt x 113.69077pt.
+<acumula.jpeg, id=54, 1606.0pt x 814.04124pt>
+File: acumula.jpeg Graphic file (type jpg)
+<use acumula.jpeg>
+Package pdftex.def Info: acumula.jpeg  used on input line 171.
+(pdftex.def)             Requested size: 244.24199pt x 123.7902pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<DiagramaDife.png, id=55, 629.35126pt x 213.79875pt>
+File: DiagramaDife.png Graphic file (type png)
+<use DiagramaDife.png>
+Package pdftex.def Info: DiagramaDife.png  used on input line 196.
+(pdftex.def)             Requested size: 244.24199pt x 82.97012pt.
+<DiferenciadorCoseno.png, id=56, 1026.83624pt x 529.98pt>
+File: DiferenciadorCoseno.png Graphic file (type png)
+<use DiferenciadorCoseno.png>
+Package pdftex.def Info: DiferenciadorCoseno.png  used on input line 202.
+(pdftex.def)             Requested size: 244.24199pt x 126.05754pt.
+File: ./figs/uislogohoriz.png Graphic file (type png)
+<use ./figs/uislogohoriz.png>
+Package pdftex.def Info: ./figs/uislogohoriz.png  used on input line 205.
+(pdftex.def)             Requested size: 63.77643pt x 31.2982pt.
+
+Overfull \hbox (1.18047pt too wide) has occurred while \output is active
+[][] 
+ []
+
+File: ./figs/logoE3T.png Graphic file (type png)
+<use ./figs/logoE3T.png>
+Package pdftex.def Info: ./figs/logoE3T.png  used on input line 205.
+(pdftex.def)             Requested size: 34.14322pt x 28.20485pt.
+[2 <./acumulador.jpeg> <./acumula.jpeg>]
+
+c:/Users/Juan/Pictures/Lab/2026_2_CommII_A1_GF/Informe/main.tex:213: LaTeX Error: Unicode character ́ (U+0301)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.213 ...ncia, cada llamada a work() reiniciarí́
+                                                  a el cálculo desde cero y...
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+<estadistico.jpeg, id=66, 1455.4375pt x 648.4225pt>
+File: estadistico.jpeg Graphic file (type jpg)
+<use estadistico.jpeg>
+Package pdftex.def Info: estadistico.jpeg  used on input line 217.
+(pdftex.def)             Requested size: 244.24199pt x 108.8056pt.
+
+LaTeX Warning: Reference `tab:comparacion' on page 3 undefined on input line 251.
+
+
+Overfull \hbox (20.37386pt too wide) in paragraph at lines 260--275
+ [][] 
+ []
+
+File: ./figs/uislogohoriz.png Graphic file (type png)
+<use ./figs/uislogohoriz.png>
+Package pdftex.def Info: ./figs/uislogohoriz.png  used on input line 276.
+(pdftex.def)             Requested size: 63.77643pt x 31.2982pt.
+
+Overfull \hbox (1.18047pt too wide) has occurred while \output is active
+[][] 
+ []
+
+File: ./figs/logoE3T.png Graphic file (type png)
+<use ./figs/logoE3T.png>
+Package pdftex.def Info: ./figs/logoE3T.png  used on input line 276.
+(pdftex.def)             Requested size: 34.14322pt x 28.20485pt.
+[3 <./DiagramaDife.png> <./DiferenciadorCoseno.png> <./estadistico.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+[]\T1/bch/m/n/10 Se ve-ri-fi-c� que el blo-que di-fe-ren-cia-dor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+\T1/pcr/m/n/10 e_Diferenciador \T1/bch/m/n/10 iden-ti-fi-ca con pre-ci-si�n
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 282--283
+\T1/bch/m/n/10 ge-ne-ran-do pi-cos de mag-ni-tud pro-por-cio-nal al
+ []
+
+No file main.bbl.
+File: ./figs/uislogohoriz.png Graphic file (type png)
+<use ./figs/uislogohoriz.png>
+Package pdftex.def Info: ./figs/uislogohoriz.png  used on input line 302.
+(pdftex.def)             Requested size: 63.77643pt x 31.2982pt.
+
+Overfull \hbox (1.18047pt too wide) has occurred while \output is active
+[][] 
+ []
+
+File: ./figs/logoE3T.png Graphic file (type png)
+<use ./figs/logoE3T.png>
+Package pdftex.def Info: ./figs/logoE3T.png  used on input line 302.
+(pdftex.def)             Requested size: 34.14322pt x 28.20485pt.
+[4
+
+] (main.aux
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
 )
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2F37E5D7C46B7210C51BB60E369E5D3C;616.
+(rerunfilecheck)             Checksum: FA08BFB2D96D202B3FE671CCA4DD6261;996.
  ) 
 Here is how much of TeX's memory you used:
- 27268 strings out of 467870
- 499209 string characters out of 5418840
- 910466 words of memory out of 5000000
- 55693 multiletter control sequences out of 15000+600000
- 758437 words of font info for 173 fonts, out of 8000000 for 9000
+ 27355 strings out of 467870
+ 500767 string characters out of 5418840
+ 920548 words of memory out of 5000000
+ 55765 multiletter control sequences out of 15000+600000
+ 759058 words of font info for 175 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,104p,440b,570s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchb8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchbi8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchr8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchri8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on main.pdf (1 page, 393652 bytes).
+ 84i,17n,104p,1001b,651s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchb8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchbi8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchr8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/bchri8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Juan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on main.pdf (4 pages, 489725 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 9 named destinations out of 1000 (max. 500000)
- 68 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 162 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 
