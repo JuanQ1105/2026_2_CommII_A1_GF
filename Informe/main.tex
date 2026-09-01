@@ -251,11 +251,19 @@ Desviación Estándar & 1.247 & 1.2480 \\
 \section{Conclusiones}
 
 \begin{itemize}
+    \item Se comprobó que el bloque acumulador \texttt{e\_Acum} actúa como un integrador discreto, transformando la señal cuadrada de entrada $[1,1,1,-1,-1,-1]$ en una salida tipo rampa/triangular acotada en $[0,3]$, evidenciando su naturaleza recursiva y validando la ecuación $y[n] = y[n-1] + x[n]$.
 
- \item Hola
- 
+    \item Se verificó que el bloque diferenciador \texttt{e\_Diferenciador} identifica con precisión los flancos y transiciones de una señal cosenoidal, generando picos de magnitud proporcional al cambio de nivel e invirtiendo la polaridad en los cruces por cero, validando así la ecuación $y[n] = x[n] - x[n-1]$.
+
+    \item El analizador estadístico calculó correctamente las cinco métricas (Media, Media Cuadrática, RMS, Potencia Promedio y Desviación Estándar) en tiempo real, con resultados prácticamente idénticos a los valores teóricos para el vector de prueba $(1,2,-1)$, confirmando que estas métricas dependen de los valores de la señal y no de la velocidad de procesamiento ni de la tasa de muestreo.
+
+    \item Se determinó que la precisión de la media es sensible al número de muestras acumuladas, mientras que los cambios en la energía de la señal se reflejan de forma más inmediata en el valor RMS, validando la sensibilidad de este último para la caracterización de señales estocásticas.
+
+    \item El uso correcto de variables de instancia para preservar el estado entre llamadas al método \texttt{work()} resultó indispensable, dado que GNU Radio procesa la señal por bloques (buffers) de muestras y no de forma continua.
+
+    \item La implementación de estas métricas en tiempo real resulta aplicable en escenarios reales de procesamiento de audio, como la detección de desplazamientos DC mediante la media o la medición de sonoridad percibida (\textit{loudness}) a través del RMS, parámetros útiles para la optimización de mezcla y diseño de compresores.
+
 \end{itemize}
-
 
 % NO MODIFIQUE NI ELIMINE ESTA PARTE PARA QUE APAREZCAN LAS REFERENCIAS
 \bibliographystyle{IEEEtran}
