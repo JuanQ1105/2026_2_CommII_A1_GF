@@ -111,9 +111,11 @@ Brhandon Felipe Herrera Puerto - 2185601
 % \begin{multicols}{2}
 \renewcommand{\abstractname}{Abstract}
 \begin{abstract}
- This report presents the development and implementation of custom Python blocks within the GNU Radio environment, designed for Software-Defined Radio (SDR) applications. Various digital signal processing algorithms were implemented using a collaborative workflow and version control via Git and GitHub. These include accumulator and differentiator blocks, as well as modules for calculating statistical metrics in real time.  The
+This report presents the development and implementation of custom Python blocks within the GNU Radio environment, designed for Software-Defined Radio (SDR) applications. Various digital signal processing algorithms were implemented using a collaborative workflow and version control via Git and GitHub. These include accumulator and differentiator blocks, as well as modules for calculating statistical metrics in real time.  The
 system’s performance was evaluated under variable sam
 pling rates and noisy environments, validating theoretical digital communication models. Results demonstrate the efficiency of programmable blocks for signal characterization and robust experimentation in SDR platforms.
+ 
+ 
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -128,17 +130,16 @@ Accumulator, Differentiator
 
 \section{Metodología}
 
-El desarrollo de esta práctica se centró en el diseño, implementación y validación de tres algoritmos utilizando la herramienta GNU Radio Companion. El flujo de trabajo se dividió en tres fases principales correspondientes a cada bloque procesador: un acumulador, un diferenciador y un analizador estadístico. Los codigos del bloque de python de cada uno de los algoritmos se extrajeron del libro guia\cite{comunicaciones2020}.
+El desarrollo de esta práctica se centró en el diseño, implementación y validación de tres algoritmos utilizando la herramienta GNU Radio Companion. El flujo de trabajo se dividió en tres fases principales correspondientes a cada bloque procesador: un acumulador, un diferenciador y un analizador estadístico. \cite{comunicaciones2020}
 \begin{itemize}
     \item Diseño del Bloque Acumulador: El primer algoritmo consistió en la implementación de un sistema acumulador discreto, cuya función matemática responde a la ecuación: $y[n]=y[n-1]+x[n]$.
     \item Diseño del Bloque Diferenciador: El segundo algoritmo implementó un diferenciador discreto de primer orden, modelado mediante la ecuación $y[n]=x[n]-x[n-1]$.
     \item Implementación del Analizador Estadístico: El tercer algoritmo implementa el cálculo de métricas estadísticas en tiempo real (Media, Media Cuadrática, Valor RMS, Potencia Promedio y Desviación Estándar).
+    Los codigos del bloque de python de cada uno de los algoritmos se extrajeron del libro guia\cite{b1}.
 \end{itemize}
 
 
-
 \section{RESULTADOS Y ANÁLISIS DE DATOS}
-
 \subsection{Bloque Acumulador}
 Para analizar el comportamiento del bloque acumu
 lador en GNU Radio, se implementó un diagrama de
@@ -173,10 +174,10 @@ neamente las señales de entrada y salida.
     \label{fig:DiferenciadorCoseno}
 \end{figure}
 
-
-
 \subsection*{Conclusión del Bloque Acumulador}
 La respuesta obtenida en la simulación confirma que el bloque \texttt{e\_Acum} se comporta de manera equivalente a un \textbf{integrador discreto en el tiempo}. Como se observa al comparar las gráficas, el procesamiento de la onda cuadrada alternada entre $+1$ y $-1$ genera a la salida una onda triangular acotada en el rango $[0, 3]$. La acumulación sucesiva de tres muestras positivas consecutivas eleva el nivel de la señal desde $0$ hasta su valor pico de $3$, mientras que la llegada de tres muestras negativas produce la pendiente descendente hasta retornar a $0$. Esto valida matemáticamente la correcta integración recursiva del algoritmo desarrollado en Python para el procesamiento de señales en tiempo real.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Bloque Diferenciador}
 
@@ -205,6 +206,8 @@ El flujo de trabajo implementado consta de los siguientes bloques principales:
 \end{figure}
 
 En la gráfica \ref{fig:DiferenciadorCoseno} en el dominio del tiempo se visualiza de forma simultánea la señal cosenoidal original (Canal 1 - Azul) y la respuesta entregada por el bloque diferenciador (Canal 2 - Rojo). Del comportamiento observado se destacan dos aspectos fundamentales: Relación de Fase y Polaridad: Matemáticamente, la derivada de una señal coseno ideal $x(t) = \cos(\omega t)$ corresponde a un seno invertido (es decir, $-\omega \sin(\omega t)$). En la simulación se comprueba que, ante los cruces por cero de la señal azul, la salida roja alcanza sus valores pico con la inversión de polaridad esperada para una diferenciación de primer orden. Escalamiento de Amplitud: La amplitud de la onda resultante muestra una reducción controlada por la ganancia discreta del algoritmo y la frecuencia de la señal, reflejando el comportamiento típico de un sistema diferenciador.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Analizador Estadístico}
 
@@ -274,6 +277,7 @@ Desviación Estándar & 1.247 & 1.2480 \\
 \end{tabular}
 \end{table}
 
+
 \section{Conclusiones}
 
 \begin{itemize}
@@ -291,6 +295,9 @@ Desviación Estándar & 1.247 & 1.2480 \\
 
 \end{itemize}
 
+
+
+% Agrega esto justo antes de la bibliografía
 \nocite{*}
 
 % Define el estilo de la bibliografía

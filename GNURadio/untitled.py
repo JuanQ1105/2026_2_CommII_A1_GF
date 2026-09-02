@@ -13,18 +13,18 @@ from PyQt5 import Qt
 from gnuradio import qtgui
 from gnuradio import analog
 from gnuradio import blocks
-import default_epy_block_0 as epy_block_0  # embedded python block
-import sip
-import threading
 from gnuradio import gr
 from gnuradio.filter import firdes
 from gnuradio.fft import window
 import sys
 import signal
+from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
-
+import sip
+import threading
+import untitled_epy_block_0 as epy_block_0  # embedded python block
 
 
 
@@ -71,7 +71,7 @@ class untitled(gr.top_block, Qt.QWidget):
         ##################################################
 
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-            1024, #size
+            128, #size
             samp_rate, #samp_rate
             "", #name
             2, #number of inputs
