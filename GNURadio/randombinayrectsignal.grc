@@ -69,7 +69,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: np.ones(1)
+    value: np.ones(4)
   states:
     bus_sink: false
     bus_source: false
@@ -149,7 +149,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    noise_type: analog.GR_GAUSSIAN
+    noise_type: analog.GR_UNIFORM
     seed: '76'
     type: float
   states:
@@ -709,7 +709,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: p4
+    stream_id: p5
   states:
     bus_sink: false
     bus_source: false
@@ -722,7 +722,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    stream_id: p5
+    stream_id: p4
   states:
     bus_sink: false
     bus_source: false

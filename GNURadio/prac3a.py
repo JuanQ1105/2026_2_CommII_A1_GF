@@ -70,7 +70,7 @@ class prac3a(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.h = h = np.ones(1)
+        self.h = h = np.ones(4)
         self.Sps = Sps = len(h)
         self.Rb = Rb = 32000
         self.samp_rate = samp_rate = Rb*Sps
@@ -247,7 +247,7 @@ class prac3a(gr.top_block, Qt.QWidget):
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
         self.blocks_add_xx_0 = blocks.add_vff(1)
         self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(0, 2, 1000000))), True)
-        self.analog_noise_source_x_0 = analog.noise_source_f(analog.GR_GAUSSIAN, 1, 76)
+        self.analog_noise_source_x_0 = analog.noise_source_f(analog.GR_UNIFORM, 1, 76)
         self.analog_const_source_x_0_0 = analog.sig_source_f(0, analog.GR_CONST_WAVE, 0, 0, (-1./2.))
 
 
@@ -255,7 +255,9 @@ class prac3a(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.analog_const_source_x_0_0, 0), (self.blocks_add_xx_0, 0))
-        self.connect((self.analog_noise_source_x_0, 0), (self.blocks_null_sink_0, 0))
+        self.connect((self.analog_noise_source_x_0, 0), (self.blocks_stream_to_vector_0, 0))
+        self.connect((self.analog_noise_source_x_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.analog_noise_source_x_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.analog_random_source_x_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_add_xx_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.blocks_char_to_float_0, 0), (self.blocks_add_xx_0, 1))
@@ -263,9 +265,7 @@ class prac3a(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.interp_fir_filter_xxx_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.qtgui_vector_sink_f_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.blocks_stream_to_vector_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.blocks_null_sink_0, 0))
         self.connect((self.epy_block_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
         self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_throttle_0, 0))
