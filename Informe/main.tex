@@ -122,7 +122,9 @@ Gato de ojos verdes. (Cambiar por las que usen)
 
 \section{Introducción}
 
- Completar\cite{b1}. % Ejemplo de citar una referencia
+ La evaluación de procesos estocásticos en el dominio de la frecuencia representa un aspecto central en la teoría de comunicaciones, dado que permite cuantificar la distribución energética de señales que no admiten una representación temporal determinista~\cite{libro_comunicaciones}. En este ámbito, la Densidad Espectral de Potencia (PSD) se consolida como el indicador clave para diagnosticar la ocupación del espectro y estimar la respuesta de un sistema de transmisión~\cite{libro_comunicaciones}.
+
+Esta práctica utiliza la plataforma GNU Radio para simular e interpretar el comportamiento espectral de diversos flujos de datos mediante bloques y modelos de procesamiento digital~\cite{gnuradio_python}. Se examinan secuencias binarias aleatorias bipolares con el fin de determinar cómo la variación de la tasa de bits, la interpolación y el parámetro de Muestras Por Símbolo ($Sps$) modifican el ancho de banda efectivo y la resolución del analizador de espectros. Adicionalmente, se incluye el estudio del ruido blanco y la incorporación de archivos multimedia (imagen y audio) como fuentes de datos reales, permitiendo contrastar los modelos teóricos con patrones de información no ideales. De este modo, los experimentos validan de forma práctica los conceptos de eficiencia espectral y refuerzan el uso de entornos de Radio Definida por Software (SDR) en la ingeniería.
 
 \section{Metodología}
 
@@ -198,6 +200,60 @@ El ruido blanco se caracteriza por poseer una densidad espectral de potencia pla
 
 Como se observa en la Figura \ref{fig:RUIDO}, al evaluar un ruido gaussiano con amplitud base de $1$, la señal temporal presenta variaciones con picos cercanos a $\pm 2.5$ y una PSD plana de aproximadamente $7.8 \times 10^{-6}$ W/Hz. Al incrementar la amplitud a $2$, la variación temporal se expande (con picos entre $4$ y $-8$) y, en consecuencia, el nivel espectral se eleva a $31 \times 10^{-6}$ W/Hz, conservando siempre su característica plana. Por otro lado, al cambiar la distribución de probabilidad a uniforme (con amplitud $1$), la señal temporal queda estrictamente en el intervalo $\pm 1$, perdiendo los picos aleatorios extremos propios de la campana de Gauss. A pesar de esta diferencia visual en el tiempo, la PSD continúa siendo una línea constante. Esto demuestra claramente que la naturaleza del ruido blanco depende de la uniformidad de su espectro y no de su distribución temporal. Observándose que en el último caso un nivel de PSD inferior, debido a que la varianza de la distribución uniforme es menor a la de la distribución normal.
 
+
+\subsection{Entrada de imagen}
+
+Al procesar la imagen \texttt{rana.jpg} mediante los bloques \textit{File Source} y \textit{Unpack K Bits}, la trama de bytes se convierte en un flujo binario no aleatorio transmitido en codificación polar NRZ ($\pm 1\text{ V}$). La Densidad Espectral de Potencia (PSD) resultante presenta la envolvente teórica tipo $\text{sinc}^2(f)$.
+
+Para caracterizar exhaustivamente el sistema, se evaluaron tres variaciones fundamentales de parámetros:
+
+\begin{itemize}
+    \item \textbf{Efecto de repetición (\texttt{Repeat}):} Con \texttt{Repeat: Yes}, la lectura continua en bucle introduce una periodicidad $T_{\text{archivo}}$, generando líneas espectrales discretas (\textit{picket fence effect}) y fluctuaciones dinámicas en tiempo real. Por el contrario, con \texttt{Repeat: No}, la simulación procesa una ráfaga finita (\textit{burst}), estabilizando la PSD en una curva continua con rizado de ventaneo (\textit{ripples}) al finalizar el archivo.
+    
+    \item \textbf{Variación de la Tasa de Transmisión ($R_b$):} Al incrementar la tasa de bits $R_b$, el tiempo de bit $T_b = 1/R_b$ disminuye, provocando que la ráfaga de datos se procese en menor tiempo. En el dominio frecuencial, esto se traduce en una expansión proporcional del lóbulo principal de la PSD, desplazando los primeros nulos espectrales de $\pm 32\text{ kHz}$ a $\pm 64\text{ kHz}$ y confirmando la relación teórica $B_{\text{null}} = R_b$.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{image_dec1d7.png}
+        \caption{$R_b = 32\text{ kbps}$}
+        \label{fig:rb_32}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{image_44642a.png}
+        \caption{Incremento de $R_b$}
+        \label{fig:rb_64}
+    \end{subfigure}
+    \caption{Respuesta temporal y espectral al variar la tasa de transmisión ($R_b$): (a) Configuración base con nulos en $\pm 32\text{ kHz}$. (b) Reducción de $T_b$ y expansión del lóbulo principal.}
+    \label{fig:variacion_rb}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Variación de Muestras por Símbolo ($Sps = \text{len}(h)$):} Al modificar la longitud del vector $h$ para incrementar $Sps$ ($4 \to 8 \to 16$), la tasa de muestreo total $f_s = R_b \cdot Sps$ se eleva de $128\text{ kHz}$ a $512\text{ kHz}$. Esto expande la ventana del eje horizontal en el analizador de espectro ($\pm f_s/2$). Dado que el ancho de banda físico real de la señal depende únicamente de $R_b$, la PSD aparece visualmente más centrada y angosta, permitiendo observar más lóbulos secundarios de la función $\text{sinc}^2(f)$ sin atenuación ni distorsión por \textit{aliasing}.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{image_44d0ed.png}
+        \caption{$Sps = 8$}
+        \label{fig:sps_8}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{image_44d189.png}
+        \caption{$Sps = 16$}
+        \label{fig:sps_16}
+    \end{subfigure}
+    \caption{Efecto del sobremuestreo en la visualización espectral: (a) PSD con $f_s = 256\text{ kHz}$. (b) PSD con $f_s = 512\text{ kHz}$. Se evidencia la expansión del eje de frecuencias y visibilidad de lóbulos secundarios.}
+    \label{fig:variacion_sps}
+\end{figure}
 
 % NO MODIFIQUE NI ELIMINE ESTA PARTE PARA QUE APAREZCAN LAS REFERENCIAS
 \bibliographystyle{IEEEtran}
