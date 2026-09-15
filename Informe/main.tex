@@ -1,0 +1,176 @@
+\documentclass[twocolumn]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{figs/}} % No modificar
+\usepackage{float}
+\usepackage[spanish, es-tabla]{babel} % Configura el idioma a español
+\addto\captionsspanish{\renewcommand{\figurename}{Figura}}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue, % Cambia el color del número si lo deseas
+    urlcolor=blue,
+}
+
+% \usepackage{ulem}
+% http://ctan.org/pkg/{algorithms,algorithmx}
+% \usepackage{algorithms,algorithmx}
+\renewcommand{\thetable}{\arabic{table}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor = blue,
+}
+\usepackage{tikz}
+
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+%\numberwithin{equation}{section}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{multirow}
+\newtheorem{theorem}{Theorem}[section]
+\makeatletter
+\newcommand{\settheoremtag}[1]{% \settheoremtag{<tag>}
+  \let\oldthetheorem\thetheorem% Store \thetheorem
+  \renewcommand{\thetheorem}{#1}% Redefine it to a fixed value
+  \g@addto@macro\endtheorem{% At \end{theorem}, ...
+    \addtocounter{theorem}{-1}% ...restore theorem counter value and...
+    \global\let\thetheorem\oldthetheorem}% ...restore \thetheorem
+  }
+\usepackage{titlesec}
+
+% Cambiar tamaño de las secciones
+\titleformat{\section}
+  {\normalsize\bfseries}   % tamaño y estilo (large = un poco más grande que normal)
+  {\thesection}{1em}  % numeración
+  {}
+
+\titleformat{\subsection}
+  {\normalsize\bfseries} % tamaño de subsección
+  {\thesubsection}{1em}
+  {}
+
+% PASO 1. Reemplace "Práctica 1" por el número de la práctica que corresponda
+\newcommand{\dochead}{Práctica # (REMPLAZAR)}     
+
+% PASO 2. Verifique el título de la práctica corresponda.
+\newcommand{\docsubhead}{Título de la práctica}  
+
+% PASO 3. Reemplace "B1A - 02" por el grupo de la asignatura y el número de su grupo de laboratorio
+\newcommand{\teamname}{A1-G#}     
+
+% PASO 4. OPCIONAL: Reemplace "\docsubhead \docsubhead" por el título del documento en caso de requerirse.
+\newcommand{\titulo}{\dochead: \docsubhead}      
+
+% PASO 5. Reemplace "31 de diciembre de 2030" por la fecha de su documento
+\newcommand{\fecha}{Agosto 27, 2026}     
+
+\input{./plantilla.tex}             % No modificar
+
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{1ex}{1ex}  % Ajusta el espacio antes y después de las secciones
+
+\usepackage[hidelinks]{hyperref}
+\begin{document}  
+
+% No modificar
+
+\title{\vspace{1cm}\textbf{\titulo}}            % No modificar
+
+% PASO 6. Agregar aquí el nombre y código de los autores.  
+\author{
+Integrante#1 - código#1 \\
+Integrante#2 - código#2\\
+Integrante#3 - código#3
+}
+\affil{\small{\url{https://github.com/SU_REPOSITORIO}}}
+\affil{\normalsize{Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones} \\ % No modificar
+\small{Universidad Industrial de Santander}} % No modificar
+
+\date{\today}
+
+\maketitle                          % No modificar
+\thispagestyle{fancy}               % No modificar
+
+%---------------------------------------------------------------
+% PASO 7. **..**...****INICIE SU DOCUMENTO DESDE AQUI***...**...
+%%%%% A PARTIR DE AQUÍ EDITE EL DOCUMENTO PARA AGREGAR TODO EL CONTENIDO REQUERIDO PARA EL ENTREGABLE CORRESPONDIENTE
+%%%%  Todo el contenido a partir de este punto es SOLAMENTE ILUSTRATIVO.
+%
+% Para sus imformes, BORRE TODO el contenido de aquí en adelante  EXCEPTO la última línea que contiene el comando: \end{document}
+
+
+
+
+% \begin{multicols}{2}
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract}
+ Completar
+ 
+ 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Gato de ojos verdes. (Cambiar por las que usen)
+\end{IEEEkeywords}
+
+\section{Introducción}
+
+ Completar\cite{b1}. % Ejemplo de citar una referencia
+
+\section{Metodología}
+
+Figura de ejemplo para enlazar un hipervínculo \ref{fig:ejemplo}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{ejemplo.png}
+    \caption{Figura de ejemplo para referenciar}
+    \label{fig:ejemplo}
+\end{figure}
+
+
+
+\section{RESULTADOS Y ANÁLISIS DE DATOS}
+
+Ejemplo de ecuación
+
+%Ejemplo de ecuación
+
+\begin{equation}
+    R_b = R_s \log_2(4)
+\end{equation}
+
+
+
+
+\section{Conclusiones}
+
+\begin{itemize}
+
+ Completar
+ 
+\end{itemize}
+
+
+% NO MODIFIQUE NI ELIMINE ESTA PARTE PARA QUE APAREZCAN LAS REFERENCIAS
+\bibliographystyle{IEEEtran}
+
+\begin{thebibliography}{00}
+
+\bibitem{b1}
+Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones, 
+\textit{Libro de Comunicaciones Plus Volumen I}. 
+Bucaramanga, Colombia: Universidad Industrial de Santander, 2020, material de apoyo académico.
+
+
+\end{thebibliography}
+
+\end{document}
