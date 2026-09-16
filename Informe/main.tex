@@ -68,7 +68,7 @@
 \newcommand{\titulo}{\dochead: \docsubhead}      
 
 % PASO 5. Reemplace "31 de diciembre de 2030" por la fecha de su documento
-\newcommand{\fecha}{Septiembre 1, 2026}     
+\newcommand{\fecha}{15 de septiembre de 2026}     
 
 \input{./plantilla.tex}             % No modificar
 
@@ -93,7 +93,7 @@ Brhandon Felipe Herrera Puerto - 2185601
 \affil{\normalsize{Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones} \\ % No modificar
 \small{Universidad Industrial de Santander}} % No modificar
 
-\date{\today}
+\date{\fecha}
 
 \maketitle                          % No modificar
 \thispagestyle{fancy}               % No modificar
@@ -117,7 +117,7 @@ This laboratory practice addresses the characterization of random processes thro
 \end{abstract}
 
 \begin{IEEEkeywords}
-Gato de ojos verdes. (Cambiar por las que usen)
+Power Spectral Density (PSD), GNU Radio, White Noise, bandwidth, Samples Per Symbol (Sps), digital signal processing
 \end{IEEEkeywords}
 
 \section{Introducción}
@@ -320,13 +320,22 @@ Finalmente, se comprobó la alta versatilidad del filtro de interpolación, ya q
 \end{itemize}
 \bibliographystyle{IEEEtran}
 
-\begin{thebibliography}{00}
+% Agrega esto justo antes de la bibliografía
+\nocite{*}
+\begin{thebibliography}{1}
 
-\bibitem{b1}
+\bibitem{libro_comunicaciones}
 Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones, 
-\textit{Libro de Comunicaciones Plus Volumen I}. 
-Bucaramanga, Colombia: Universidad Industrial de Santander, 2020, material de apoyo académico.
+\emph{Libro de Comunicaciones Plus Volumen I}. 
+Bucaramanga, Colombia: Universidad Industrial de Santander, 2020. Material de apoyo académico.
 
+\bibitem{gnuradio_python}
+Wikipedia contributors, ``GNU Radio --- embedded python block,'' 
+\url{https://wiki.gnuradio.org/index.php/Embedded_Python_Block}, 
+2025, accessed: 2025-09-01.
+
+\bibitem{gnuradio_foundation}
+The GNU Radio Foundation, ``GNU Radio --- the free and open software radio ecosystem,'' 2026.
 
 \end{thebibliography}
 
