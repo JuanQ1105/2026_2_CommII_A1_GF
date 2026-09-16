@@ -111,7 +111,7 @@ Brhandon Felipe Herrera Puerto - 2185601
 % \begin{multicols}{2}
 \renewcommand{\abstractname}{Abstract}
 \begin{abstract}
- Completar
+This laboratory practice addresses the characterization of random processes through the evaluation of Power Spectral Density (PSD) within the GNU Radio environment. The primary objective is to examine the frequency distribution of energy in various digital signals, a key aspect in the design of modern communication systems. Through the simulation of processing flowgraphs, the influence of the Samples Per Symbol ($Sps$) parameter on spectral resolution and the occupied bandwidth for random bipolar binary sequences was analyzed. Additionally, the practical work included the study of white noise and the transmission of bitstreams derived from real-world audio and image files, enabling a contrast between their respective spectral behaviors. The experimental findings support theoretical foundations in the frequency domain, demonstrating the direct effect that digital signal processing parameters have on the spectral properties of transmitted information.Keywords: Power Spectral Density (PSD), GNU Radio, stochastic processes, bandwidth, Samples Per Symbol ($Sps$), digital signal processing
  
  
 \end{abstract}
@@ -255,7 +255,69 @@ Para caracterizar exhaustivamente el sistema, se evaluaron tres variaciones fund
     \label{fig:variacion_sps}
 \end{figure}
 
+\subsection{Entrada de Audio}
+Para el audio (Figs. 7 y 8), la energía se concentra
+principalmente en el espectro audible bajo.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{imagen1.jpeg} % Cambia por el nombre de tu primera imagen
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{imagen2_audio.jpeg} % Cambia por el nombre de tu segunda imagen
+    \end{minipage}
+    \caption{Representación inicial de la señal acústica de entrada.}
+    \label{fig:senal_acustica}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{imagen3_audio.jpeg} % Cambia por el nombre de tu primera imagen
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{imagen4_audio.jpeg} % Cambia por el nombre de tu segunda imagen
+    \end{minipage}
+    \caption{Señal unidimensional de audio tras el proceso de filtrado y digitalización.}
+    \label{fig:senal_acustica}
+\end{figure}
+
+Para el audio, la energía se distribuye a lo largo del espectro presentando deltas pronunciadas debido a la periodicidad y correlación entre muestras binarias contiguas del archivo acoplado.
+
+Se observó que el número de lóbulos visibles en la PSD se encuentra directamente relacionado con el parámetro $Sps$, lo que determina el nivel de detalle en la representación en frecuencia. Asimismo, la resolución espectral del analizador está gobernada por el número de puntos utilizados en la transformada, siguiendo la relación $\Delta f = \frac{f_s}{N}$.
+
+En cuanto al procesamiento digital, el bloque \textit{Unpack K Bits} influye directamente en la tasa de datos, ya que un incremento en el valor de $K$ genera un aumento en la frecuencia de salida y, por ende, en el ancho de banda ocupado. Por otro lado, el bloque \textit{Char to Float} no altera la frecuencia de muestreo, sino únicamente el tipo de representación de la señal.
+
+Adicionalmente, se evaluó la respuesta espectral al modificar la forma del pulso en el dominio del tiempo mediante el vector de coeficientes $h$:
+
+\begin{itemize}
+    \item \textbf{Señal rectangular:} Presenta la clásica envolvente $\text{sinc}^2(f)$ centrada en $0\text{ Hz}$, conservando energía apreciable en los lóbulos secundarios.
+    \item \textbf{Señal triangular:} El suavizado lineal del pulso atenúa las componentes de alta frecuencia, logrando una caída más rápida en las bandas laterales ($\text{sinc}^4(f)$) y concentrando la energía en el lóbulo principal.
+    \item \textbf{Codificación Manchester:} Introduce transiciones a mitad del intervalo del bit, anulando la componente de continua (DC) en $0\text{ Hz}$ y desplazando la mayor potencia hacia frecuencias superiores.
+\end{itemize}
+Finalmente, se comprobó la alta versatilidad del filtro de interpolación, ya que mediante la modificación del vector de coeficientes $h$ es posible adaptar la forma del pulso a diferentes esquemas de codificación dentro del entorno de radio definida por software.
 % NO MODIFIQUE NI ELIMINE ESTA PARTE PARA QUE APAREZCAN LAS REFERENCIAS
+
+\section{Conclusiones}
+
+\begin{itemize}
+    \item A partir de la variación del parámetro $Sps$, se comprueba experimentalmente la relación inversamente proporcional que existe entre la duración de un pulso en el dominio del tiempo y su ocupación espectral en el dominio de la frecuencia. Al incrementar el número de muestras por simbolo se reduce la tasa de transmision de bits ($R_b$), lo que se traduce como el estrechamiento de la PSD.
+    \item El análisis bajo diferentes configuraciones permite concluir que la característica del ruido blanco es la planitud de su espectro de frecuencias. Se demostró que esta propiedad en el dominio de la frecuencia es totalmente independiente de la distribución estadística, manteniéndose igual tanto para variables aleatorias de distribución normal (Gaussiana) como uniforme. Asimismo, se valido que incrementar la amplitud de la fuente de ruido eleva la magnitud de la potencia total.
+    
+    \item Se comprobó experimentalmente la relación inversamente proporcional entre la duración temporal del símbolo $T_b$ y el ancho de banda ocupado por su lóbulo principal $BW = 2/T_b$. Al incrementar el parámetro $Sps$, disminuye la tasa de transmisión $R_b$, lo que provoca una compresión del espectro en frecuencia y demuestra la dependencia directa entre la configuración de sobremuestreo y la ocupación espectral.
+
+    \item Se evidenció la versatilidad del bloque \textit{Interpolating FIR Filter} mediante la manipulación del vector de coeficientes $h$. La modificación de los coeficientes permitió realizar el moldeo de pulso (de rectangular a triangular o codificación Manchester), logrando atenuar lóbulos secundarios en frecuencia o eliminar la componente de continua (DC) en 0 Hz según los requerimientos del canal.
+
+    \item Se validó que el parámetro $K$ en el bloque \textit{Unpack K Bits} incrementa la tasa de símbolos a la salida y amplía el ancho de banda ocupado, mientras que el bloque \textit{Char to Float} actúa únicamente como un formateador de tipo de dato sin alterar la frecuencia de muestreo $f_s$ ni la resolución espectral $\Delta f = f_s/N$ del analizador.
+
+\end{itemize}
 \bibliographystyle{IEEEtran}
 
 \begin{thebibliography}{00}
